@@ -121,112 +121,114 @@ Character.prototype.draw = function () {
 }
 
 Character.prototype.update = function () {
-    if (this.number == 1) {
-        if (this.game.u && this.k != true && this.sup != true&& this.h != true) {
-            this.g = true;
-        } else {
-            this.g = false;
-            if (this.game.s && this.sup != true && this.h != true) {
-                this.k = true;
-                if (this.power < 300){
-                    this.power += 1;
-                }
+    if (this.hit != true){
+        if (this.number == 1) {
+            if (this.game.u && this.k != true && this.sup != true) {
+                this.g = true;
             } else {
-                this.k = false;
-                if (this.game.i && this.power >= 100 && this.h != true) {
-                    this.sup = true;
-                    if (this.super.isDone()) {
-                        this.super.elapsedTime = 0;
-                        this.game.i = false;
-                        this.sup = false;
-                        this.power -= 100;
+                this.g = false;
+                if (this.game.s && this.sup != true) {
+                    this.k = true;
+                    if (this.power < 300){
+                        this.power += 1;
                     }
-                }
-                if (this.super.currentFrame() > 2){
-                    this.flash.x = this.x + 150 ;
-                    this.flash.y = this.y;
-                }
-                if (this.sup != true) {
-                    this.flash.x = 0;
-                    this.flash.y = 720;
-                    if (this.game.w && this.h != true) {
-                        this.jump = true;
-                    } else if (this.game.j && this.canAttack() && this.h != true) {
-                        this.lightB = true;
-                    } else if (this.game.k && this.canAttack() && this.h != true) {
-                        this.middleB = true;
-                    } else {
-                        if (this.game.d && this.h != true) {
-                            this.goF = true;
-                            if (this.animation.elapsedTime < this.animation.totalTime && this.x + this.goForward.frameWidth * 4 < this.opponent.x)
-                                this.x += this.game.clockTick * this.speed;
-                        } else {
-                            this.goF = false;
+                } else {
+                    this.k = false;
+                    if (this.game.i && this.power >= 100) {
+                        this.sup = true;
+                        if (this.super.isDone()) {
+                            this.super.elapsedTime = 0;
+                            this.game.i = false;
+                            this.sup = false;
+                            this.power -= 100;
                         }
-                        if (this.game.a && this.h != true) {
-                            this.goB = true;
-                            if (this.animation.elapsedTime < this.animation.totalTime && this.x > 0)
-                                this.x -= this.game.clockTick * this.speed;
+                    }
+                    if (this.super.currentFrame() > 2){
+                        this.flash.x = this.x + 150 ;
+                        this.flash.y = this.y;
+                    }
+                    if (this.sup != true) {
+                        this.flash.x = 0;
+                        this.flash.y = 720;
+                        if (this.game.w) {
+                            this.jump = true;
+                        } else if (this.game.j && this.canAttack()) {
+                            this.lightB = true;
+                        } else if (this.game.k && this.canAttack()) {
+                            this.middleB = true;
                         } else {
-                            this.goB = false;
+                            if (this.game.d) {
+                                this.goF = true;
+                                if (this.animation.elapsedTime < this.animation.totalTime && this.x + this.goForward.frameWidth * 4 < this.opponent.x)
+                                    this.x += this.game.clockTick * this.speed;
+                            } else {
+                                this.goF = false;
+                            }
+                            if (this.game.a) {
+                                this.goB = true;
+                                if (this.animation.elapsedTime < this.animation.totalTime && this.x > 0)
+                                    this.x -= this.game.clockTick * this.speed;
+                            } else {
+                                this.goB = false;
+                            }
                         }
                     }
                 }
             }
-        }
-    } else {
-        if (this.game.num4 && this.k != true && this.super != true&& this.h != true) {
-            this.g = true;
         } else {
-            this.g = false;
-            if (this.game.down && this.super != true && this.h != true) {
-                this.k = true;
-                if (this.power < 300){
-                    this.power += 1;
-                }
+            if (this.game.num4 && this.k != true && this.super != true) {
+                this.g = true;
             } else {
-                this.k = false;
-                if (this.game.num5 && this.power >= 100 && this.h != true) {
-                    this.sup = true;
-                    if (this.super.isDone()) {
-                        this.super.elapsedTime = 0;
-                        this.game.num5 = false;
-                        this.sup = false;
-                        this.power -= 100;
+                this.g = false;
+                if (this.game.down && this.super != true) {
+                    this.k = true;
+                    if (this.power < 300){
+                        this.power += 1;
                     }
-                }
-                if (this.super.currentFrame() > 2){
-                    this.flash.x = this.x - 350 - this.super.frameWidth * 3 ;
-                    this.flash.y = this.y;
-                }
-                if (this.sup != true) {
-                    this.flash.x = 2000;
-                    this.flash.y = 1000;
-                    if (this.game.up && this.h != true) {
-                        this.jump = true;
-                    } else if (this.game.num1 && this.canAttack() && this.h != true) {
-                        this.lightB = true;
-                    } else if (this.game.num2 && this.canAttack() && this.h != true) {
-                        this.middleB = true;
-                    } else {
-                        if (this.game.num4 && this.h != true) {
-                            this.g = true;
-                        } else {
-                            this.g = false;
+                } else {
+                    this.k = false;
+                    if (this.game.num5 && this.power >= 100) {
+                        this.sup = true;
+                        if (this.super.isDone()) {
+                            this.super.elapsedTime = 0;
+                            this.game.num5 = false;
+                            this.sup = false;
+                            this.power -= 100;
                         }
-                        if (this.game.left && this.h != true) {
-                            this.goF = true;
-                            if (this.animation.elapsedTime < this.animation.totalTime && this.x - this.goForward.frameWidth * 4 > this.opponent.x)
-                                this.x -= this.game.clockTick * this.speed;
+                    }
+                    if (this.super.currentFrame() > 2){
+                        this.flash.x = this.x - 350 - this.super.frameWidth * 3 ;
+                        this.flash.y = this.y;
+                    }
+                    if (this.sup != true) {
+                        this.flash.x = 2000;
+                        this.flash.y = 1000;
+                        if (this.game.up) {
+                            this.jump = true;
+                        } else if (this.game.num1 && this.canAttack()) {
+                            this.lightB = true;
+                        } else if (this.game.num2 && this.canAttack()) {
+                            this.middleB = true;
                         } else {
-                            this.goF = false;
-                        }
-                        if (this.game.right && this.h != true) {
-                            this.goB = true;
-                            if (this.animation.elapsedTime < this.animation.totalTime && this.x < 1280)
-                                this.x += this.game.clockTick * this.speed;
-                        } else {
-                            this.goB = false;
+                            if (this.game.num4) {
+                                this.g = true;
+                            } else {
+                                this.g = false;
+                            }
+                            if (this.game.left) {
+                                this.goF = true;
+                                if (this.animation.elapsedTime < this.animation.totalTime && this.x - this.goForward.frameWidth * 4 > this.opponent.x)
+                                    this.x -= this.game.clockTick * this.speed;
+                            } else {
+                                this.goF = false;
+                            }
+                            if (this.game.right) {
+                                this.goB = true;
+                                if (this.animation.elapsedTime < this.animation.totalTime && this.x < 1280)
+                                    this.x += this.game.clockTick * this.speed;
+                            } else {
+                                this.goB = false;
+                            }
                         }
                     }
                 }
@@ -372,6 +374,7 @@ flash.prototype.draw = function () {
 };
 
 flash.prototype.update = function () {
+
 };
 
 function point(game, spritesheet, x, y) {
