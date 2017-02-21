@@ -1,0 +1,16 @@
+#control{
+    width: 1280px;
+}
+.left{
+    width: 240px;
+    height: 200px;
+    background-color: cornflowerblue;
+    float: left;
+    margin-right: 600px;
+}
+.right{
+    width: 240px;
+    height:200px;
+    background-color: fuchsia;
+    float: right;
+}
