@@ -391,4 +391,4 @@ point.prototype.draw = function () {
 };
 
 point.prototype.update = function () {
-};
+}; 
