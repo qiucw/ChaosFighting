@@ -10,61 +10,61 @@
 </head>
 <body>
 
-        <h1>SELECT ONE</h1>
-            <img id= "ryu1" src="selection/ryu.gif" style="width:124px;height:186px;">
-            <img id="goku" src="selection/goku.gif" style="width:124px;height:186px;">
-            <img id= "ryu3" src="selection/ryu.gif" style="width:124px;height:186px;">
-        <br>
-        <p id="name"><br></p>
-        <button id="select1" style="height:40px;width:150px">Player1 Select</button>
-        <button id="select2" style="height:40px;width:150px">Player2 Select</button>
-        <p id="hint1"><br></p>
-        <p id="hint2"><br></p>
-        <h1><a href="game.html">Play Now</a></h1>
+<h1>SELECT ONE</h1>
+<img id= "ryu1" src="selection/ryu.gif" style="width:124px;height:186px;">
+<img id="goku" src="selection/goku.gif" style="width:124px;height:186px;">
+<!--<img id= "ryu3" src="selection/ryu.gif" style="width:124px;height:186px;">-->
+<br>
+<p id="name"><br></p>
+<button id="select1" style="height:40px;width:150px">Player1 Select</button>
+<button id="select2" style="height:40px;width:150px">Player2 Select</button>
+<p id="hint1"><br></p>
+<p id="hint2"><br></p>
+<h1><a href="game.html">Play Now</a></h1>
 
-        <script>
-            var selected = 0;
-            document.getElementById("ryu1").addEventListener("click", function(){
-                document.getElementById("name").innerHTML = "RYU1";
-                document.getElementById("ryu1").setAttribute("border", 2);
-                document.getElementById("goku").setAttribute("border", 0);
-                document.getElementById("ryu3").setAttribute("border", 0);
-                selected = 1;
-            });
-            document.getElementById("goku").addEventListener("click", function(){
-                document.getElementById("name").innerHTML = "GOKU";
-                document.getElementById("ryu1").setAttribute("border", 0);
-                document.getElementById("goku").setAttribute("border", 2);
-                document.getElementById("ryu3").setAttribute("border", 0);
-                selected = 2;
-            });
-            document.getElementById("ryu3").addEventListener("click", function(){
-                document.getElementById("name").innerHTML = "RYU3";
-                document.getElementById("ryu1").setAttribute("border", 0);
-                document.getElementById("goku").setAttribute("border", 0);
-                document.getElementById("ryu3").setAttribute("border", 2);
-                selected = 3;
-            });
-            document.getElementById("select1").addEventListener("click", function(){
-                if (selected === 1){
-                    document.getElementById("hint1").innerHTML = "Player1 has chosen RYU1";
-                } else if (selected === 2){
-                    document.getElementById("hint1").innerHTML = "Player1 has chosen GOKU";
-                } else if (selected === 3){
-                    document.getElementById("hint1").innerHTML = "Player1 has chosen RYU3";
-                }
-                localStorage.setItem("selection1", selected);
-            });
-            document.getElementById("select2").addEventListener("click", function(){
-                if (selected === 1){
-                    document.getElementById("hint2").innerHTML = "Player2 has chosen RYU1";
-                } else if (selected === 2){
-                    document.getElementById("hint2").innerHTML = "Player2 has chosen GOKU";
-                } else if (selected === 3){
-                    document.getElementById("hint2").innerHTML = "Player2 has chosen RYU3";
-                }
-                localStorage.setItem("selection2", selected);
-            });
-        </script>
+<script>
+    var selected = 0;
+    document.getElementById("ryu1").addEventListener("click", function(){
+        document.getElementById("name").innerHTML = "RYU1";
+        document.getElementById("ryu1").setAttribute("border", 2);
+        document.getElementById("goku").setAttribute("border", 0);
+//                document.getElementById("ryu3").setAttribute("border", 0);
+        selected = 1;
+    });
+    document.getElementById("goku").addEventListener("click", function(){
+        document.getElementById("name").innerHTML = "GOKU";
+        document.getElementById("ryu1").setAttribute("border", 0);
+        document.getElementById("goku").setAttribute("border", 2);
+//                document.getElementById("ryu3").setAttribute("border", 0);
+        selected = 2;
+    });
+    //            document.getElementById("ryu3").addEventListener("click", function(){
+    //                document.getElementById("name").innerHTML = "RYU3";
+    //                document.getElementById("ryu1").setAttribute("border", 0);
+    //                document.getElementById("goku").setAttribute("border", 0);
+    ////                document.getElementById("ryu3").setAttribute("border", 2);
+    //                selected = 3;
+    //            });
+    document.getElementById("select1").addEventListener("click", function(){
+        if (selected === 1){
+            document.getElementById("hint1").innerHTML = "Player1 has chosen RYU1";
+        } else if (selected === 2){
+            document.getElementById("hint1").innerHTML = "Player1 has chosen GOKU";
+        } else if (selected === 3){
+            document.getElementById("hint1").innerHTML = "Player1 has chosen RYU3";
+        }
+        localStorage.setItem("selection1", selected);
+    });
+    document.getElementById("select2").addEventListener("click", function(){
+        if (selected === 1){
+            document.getElementById("hint2").innerHTML = "Player2 has chosen RYU1";
+        } else if (selected === 2){
+            document.getElementById("hint2").innerHTML = "Player2 has chosen GOKU";
+        } else if (selected === 3){
+            document.getElementById("hint2").innerHTML = "Player2 has chosen RYU3";
+        }
+        localStorage.setItem("selection2", selected);
+    });
+</script>
 </body>
 </html>

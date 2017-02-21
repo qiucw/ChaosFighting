@@ -1,7 +1,5 @@
 
 function Character(game, asset, playerNumber, characterNumber) {
-
-    this.asset = asset;
     this.number = playerNumber;
     this.goF = false;
     this.goB = false;
@@ -31,9 +29,10 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.lightBoxing = new Animation(asset.getAsset("./RYU/right/lightBoxing.gif"), 94, 91, 3, 0.12, 3, false, 3);
             this.middleBoxing = new Animation(asset.getAsset("./RYU/right/middleBoxing.gif"), 115, 95, 5, 0.12, 5, false, 3);
             this.jumpUp = new Animation(asset.getAsset("./RYU/right/jumpUp.gif"), 58, 109, 8, 0.12, 8, false, 3);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
             this.x = 200;
         } else{
-            this.animation = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
+            this.animation = new Animation(asset.getAsset("./RYU/left/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
             this.ki = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
             this.hit = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
             this.goForward = new Animation(asset.getAsset("./RYU/left/goForward.gif"), 66, 92, 6, 0.25, 6, true, 3);
@@ -43,6 +42,7 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.lightBoxing = new Animation(asset.getAsset("./RYU/left/lightBoxing.gif"), 94, 91, 3, 0.12, 3, false, 3);
             this.middleBoxing = new Animation(asset.getAsset("./RYU/left/middleBoxing.gif"), 115, 95, 5, 0.12, 5, false, 3);
             this.jumpUp = new Animation(asset.getAsset("./RYU/left/jumpUp.gif"), 58, 109, 8, 0.12, 8, false, 3);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
             this.x = 1050;
         }
     } else if (characterNumber == 2){
@@ -57,14 +57,7 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.hit = new Animation(asset.getAsset("./GOKU/right/hit.png"), 56, 91, 1, 0.12, 1, true, 3);
             this.ki = new Animation(asset.getAsset("./GOKU/right/ki.png"), 60, 96, 2, 0.12, 2, true, 3);
             this.super = new Animation(asset.getAsset("./GOKU/right/super.png"), 53, 77, 13, 0.12, 13, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
-            this.point1 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-            this.point2 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-            this.point3 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-            this.game.addEntity(this.flash);
-            this.game.addEntity(this.point1);
-            this.game.addEntity(this.point2);
-            this.game.addEntity(this.point3);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
             this.x = 220;
         } else {
             this.animation = new Animation(asset.getAsset("./GOKU/left/wait.png"), 48, 86, 2, 0.10, 2, true, 3);
@@ -77,18 +70,18 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.hit = new Animation(asset.getAsset("./GOKU/left/hit.png"), 56, 91, 1, 0.12, 1, true, 3);
             this.ki = new Animation(asset.getAsset("./GOKU/left/ki.png"), 60, 96, 2, 0.12, 2, true, 3);
             this.super = new Animation(asset.getAsset("./GOKU/left/super.png"), 53, 77, 12, 0.12, 12, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./GOKU/left/superFlash.png"), 0, 0);
-            this.point1 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-            this.point2 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-            this.point3 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-            this.game.addEntity(this.flash);
-            this.game.addEntity(this.point1);
-            this.game.addEntity(this.point2);
-            this.game.addEntity(this.point3);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/left/superFlash.png"), 0, 0);
             this.x = 1000;
 
         }
     }
+    this.point1 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
+    this.point2 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
+    this.point3 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
+    this.game.addEntity(this.flash);
+    this.game.addEntity(this.point1);
+    this.game.addEntity(this.point2);
+    this.game.addEntity(this.point3);
 }
 
 Character.prototype.setOpponent = function(opponent) {
@@ -123,10 +116,9 @@ Character.prototype.draw = function () {
     }else {
         this.animation.drawFrame(this.game.clockTick, this.ctx, this.x - this.animation.frameWidth * n, this.y);
     }
-}
+};
 
 Character.prototype.update = function () {
-    console.log(this.power);
     if (this.number == 1) {
         if (this.game.u && this.k != true && this.sup != true&& this.h != true) {
             this.g = true;
@@ -358,41 +350,41 @@ Character.prototype.update = function () {
     if (this.healthPoint < 0 || this.opponent.healthPoint < 0){
         window.location.href = "index.html";
     }
-}
+};
 
 Character.prototype.canAttack = function(){
     return !this.opponent.lightB && !this.opponent.middleB && !this.jump;
-}
+};
 
-function flash(game, spritesheet, x, y) {
+function Flash(game, spritesheet, x, y) {
     this.x = x;
     this.y = y;
     this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
-};
+}
 
-flash.prototype.draw = function () {
+Flash.prototype.draw = function () {
     this.ctx.drawImage(this.spritesheet,
         this.x, this.y, this.spritesheet.width * 2, this.spritesheet.height * 2);
 };
 
-flash.prototype.update = function () {
+Flash.prototype.update = function () {
 
 };
 
-function point(game, spritesheet, x, y) {
+function Point(game, spritesheet, x, y) {
     this.x = x;
     this.y = y;
     this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
-};
+}
 
-point.prototype.draw = function () {
+Point.prototype.draw = function () {
     this.ctx.drawImage(this.spritesheet,
         this.x, this.y, this.spritesheet.width, this.spritesheet.height);
 };
 
-point.prototype.update = function () {
+Point.prototype.update = function () {
 };

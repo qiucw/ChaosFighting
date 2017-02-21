@@ -6,7 +6,6 @@ function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDurati
     this.frameDuration = frameDuration;
     this.frameHeight = frameHeight;
     this.sheetWidth = sheetWidth;
-    this.frames = frames;
     this.totalTime = frameDuration * frames;
     this.elapsedTime = 0;
     this.loop = loop;
@@ -19,10 +18,8 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
         if (this.loop) this.elapsedTime = 0;
     }
     var frame = this.currentFrame();
-    var xindex = 0;
-    var yindex = 0;
-    xindex = frame % this.sheetWidth;
-    yindex = Math.floor(frame / this.sheetWidth);
+    var xindex = frame % this.sheetWidth;
+    var yindex = Math.floor(frame / this.sheetWidth);
 
     ctx.drawImage(this.spriteSheet,
         xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
@@ -30,15 +27,15 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
         x, y,
         this.frameWidth * this.scale,
         this.frameHeight * this.scale);
-}
+};
 
 Animation.prototype.currentFrame = function () {
     return Math.floor(this.elapsedTime / this.frameDuration);
-}
+};
 
 Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
-}
+};
 
 // no inheritance
 function Background(game, spritesheet) {
@@ -47,7 +44,7 @@ function Background(game, spritesheet) {
     this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
-};
+}
 
 Background.prototype.draw = function () {
     this.ctx.drawImage(this.spritesheet,
@@ -63,7 +60,7 @@ function Bar(game, spritesheet) {
     this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
-};
+}
 
 Bar.prototype.draw = function () {
     this.ctx.drawImage(this.spritesheet,
@@ -74,7 +71,7 @@ Bar.prototype.draw = function () {
 };
 
 Bar.prototype.update = function () {
-        //test health point
+        //test health Point
         if (this.game.num9){
             playerOne.healthPoint--;
             playerTwo.healthPoint--;
@@ -128,7 +125,7 @@ AM.queueDownload("./RYU/right/wait.gif");
 
 AM.queueDownload("./img/StageChina.jpg");
 AM.queueDownload("./img/bar.gif");
-AM.queueDownload("./img/point.png");
+AM.queueDownload("./img/Point.png");
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
