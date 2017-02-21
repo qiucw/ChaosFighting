@@ -372,7 +372,6 @@ flash.prototype.draw = function () {
 };
 
 flash.prototype.update = function () {
-
 };
 
 function point(game, spritesheet, x, y) {
