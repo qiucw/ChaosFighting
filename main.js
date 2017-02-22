@@ -84,6 +84,31 @@ Bar.prototype.update = function () {
         }
 };
 
+AM.queueDownload("./ITACHI/left/jumpUp.png");
+AM.queueDownload("./ITACHI/left/heavyBoxing.png");
+AM.queueDownload("./ITACHI/left/lightBoxing.png");
+AM.queueDownload("./ITACHI/left/goBack.png");
+AM.queueDownload("./ITACHI/left/goForward.png");
+AM.queueDownload("./ITACHI/left/wait.png");
+AM.queueDownload("./ITACHI/left/guard.png");
+AM.queueDownload("./ITACHI/left/hit.png");
+AM.queueDownload("./ITACHI/left/ki.png");
+AM.queueDownload("./ITACHI/left/super.png");
+AM.queueDownload("./ITACHI/left/superFlash.png");
+AM.queueDownload("./ITACHI/superSound.mp3");
+
+AM.queueDownload("./ITACHI/right/jumpUp.png");
+AM.queueDownload("./ITACHI/right/heavyBoxing.png");
+AM.queueDownload("./ITACHI/right/lightBoxing.png");
+AM.queueDownload("./ITACHI/right/goBack.png");
+AM.queueDownload("./ITACHI/right/goForward.png");
+AM.queueDownload("./ITACHI/right/wait.png");
+AM.queueDownload("./ITACHI/right/guard.png");
+AM.queueDownload("./ITACHI/right/hit.png");
+AM.queueDownload("./ITACHI/right/ki.png");
+AM.queueDownload("./ITACHI/right/super.png");
+AM.queueDownload("./ITACHI/right/superFlash.png");
+
 AM.queueDownload("./GOKU/right/jumpUp.png");
 AM.queueDownload("./GOKU/right/heavyBoxing.png");
 AM.queueDownload("./GOKU/right/lightBoxing.png");
@@ -95,6 +120,7 @@ AM.queueDownload("./GOKU/right/hit.png");
 AM.queueDownload("./GOKU/right/ki.png");
 AM.queueDownload("./GOKU/right/super.png");
 AM.queueDownload("./GOKU/right/superFlash.png");
+AM.queueDownload("./GOKU/superSound.mp3");
 
 AM.queueDownload("./GOKU/left/jumpUp.png");
 AM.queueDownload("./GOKU/left/heavyBoxing.png");

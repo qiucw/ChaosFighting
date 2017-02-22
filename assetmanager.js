@@ -16,11 +16,20 @@ AssetManager.prototype.isDone = function () {
 
 AssetManager.prototype.downloadAll = function (callback) {
     for (var i = 0; i < this.downloadQueue.length; i++) {
-        var img = new Image();
-        var that = this;
+
 
         var path = this.downloadQueue[i];
         console.log(path);
+        var index = (path.indexOf('.mp3'));
+
+        if(index !== -1){
+            var img = new Audio();
+            that.successCount++;
+        }else{
+            var img = new Image();
+        }
+        var that = this;
+
 
         img.addEventListener("load", function () {
             console.log("Loaded " + this.src);
