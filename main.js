@@ -6,7 +6,6 @@ function Animation(spriteSheet, frameWidth, frameHeight, sheetWidth, frameDurati
     this.frameDuration = frameDuration;
     this.frameHeight = frameHeight;
     this.sheetWidth = sheetWidth;
-    this.frames = frames;
     this.totalTime = frameDuration * frames;
     this.elapsedTime = 0;
     this.loop = loop;
@@ -74,7 +73,7 @@ Bar.prototype.draw = function () {
 };
 
 Bar.prototype.update = function () {
-        //test health point
+        //test health Point
         if (this.game.num9){
             playerOne.healthPoint--;
             playerTwo.healthPoint--;
@@ -154,7 +153,8 @@ AM.queueDownload("./RYU/right/wait.gif");
 
 AM.queueDownload("./img/StageChina.jpg");
 AM.queueDownload("./img/bar.gif");
-AM.queueDownload("./img/point.png");
+AM.queueDownload("./img/Point.png");
+AM.queueDownload("./img/hit.mp3");
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
@@ -168,6 +168,9 @@ AM.downloadAll(function () {
     playerTwo = new Character(gameEngine, AM, 2, localStorage.getItem("selection2"));
     playerOne.setOpponent(playerTwo);
     playerTwo.setOpponent(playerOne);
+    if (localStorage.getItem("selection2") == 0){
+        gameEngine.ai = true;
+    }
     gameEngine.addEntity(playerOne);
     gameEngine.addEntity(playerTwo);
     gameEngine.addEntity(new Bar(gameEngine, AM.getAsset("./img/bar.gif")));

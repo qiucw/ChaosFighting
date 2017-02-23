@@ -3,43 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>TCSS491</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <center>
-        <h1>SELECT ONE</h1>
-            <img id= "ryu1" src="selection/ryu.gif" style="width:124px;height:186px;">
+    <div class="center1">
+        <h1>CHAOS FIGHTING</h1>
+        <p>GAME MODE: <button id="type" style="height:40px;width:150px">ONE PLAYER</button></p>
+            <img id="ryu" src="selection/ryu.gif" style="width:124px;height:186px;">
             <img id="goku" src="selection/goku.gif" style="width:124px;height:186px;">
             <img id= "itachi" src="selection/itachi.gif" style="width:124px;height:186px;">
         <br>
-        <p id="name"><br></p>
-        <button id="select1" style="height:40px;width:150px">Player1 Select</button>
-        <button id="select2" style="height:40px;width:150px">Player2 Select</button>
+        <p class="form">RYU</p>
+        <p class="form">GOKU</p>
+        <p class="form">ITACHI</p>
+        <br>
+
+        <button id="select1" style="height:60px;width:200px">Player1 Select</button>
+        <button id="select2" style="height:60px;width:200px" disabled>Player2 Select</button>
         <p id="hint1"><br></p>
         <p id="hint2"><br></p>
         <h1><a href="game.html">Play Now</a></h1>
-
-    <center>
+    </div>
         <script>
             var selected = 0;
-            document.getElementById("ryu1").addEventListener("click", function(){
-                document.getElementById("name").innerHTML = "RYU1";
-                document.getElementById("ryu1").setAttribute("border", 2);
-                document.getElementById("goku").setAttribute("border", 0);
-                document.getElementById("itachi").setAttribute("border", 0);
+            localStorage.setItem("selection2", 0);
+            document.getElementById("ryu").addEventListener("click", function(){
+//                document.getElementById("name").innerHTML = "RYU";
+                document.getElementById("ryu").setAttribute("border", "2");
+                document.getElementById("goku").setAttribute("border", "0");
+                document.getElementById("itachi").setAttribute("border", "0");
                 selected = 1;
             });
             document.getElementById("goku").addEventListener("click", function(){
-                document.getElementById("name").innerHTML = "GOKU";
-                document.getElementById("ryu1").setAttribute("border", 0);
-                document.getElementById("goku").setAttribute("border", 2);
-                document.getElementById("itachi").setAttribute("border", 0);
+//                document.getElementById("name").innerHTML = "GOKU";
+                document.getElementById("ryu").setAttribute("border", "0");
+                document.getElementById("goku").setAttribute("border", "2");
+                document.getElementById("itachi").setAttribute("border", "0");
                 selected = 2;
             });
             document.getElementById("itachi").addEventListener("click", function(){
-                document.getElementById("name").innerHTML = "RYU3";
-                document.getElementById("ryu1").setAttribute("border", 0);
-                document.getElementById("goku").setAttribute("border", 0);
-                document.getElementById("itachi").setAttribute("border", 2);
+//                document.getElementById("name").innerHTML = "ITACHI";
+                document.getElementById("ryu").setAttribute("border", "0");
+                document.getElementById("goku").setAttribute("border", "0");
+                document.getElementById("itachi").setAttribute("border", "2");
                 selected = 3;
             });
             document.getElementById("select1").addEventListener("click", function(){
@@ -62,6 +68,18 @@
                 }
                 localStorage.setItem("selection2", selected);
             });
+            document.getElementById("type").addEventListener("click", function(){
+                if (document.getElementById("type").innerHTML == "ONE PLAYER"){
+                    document.getElementById("type").innerHTML = "TWO PLAYER";
+                    document.getElementById("select2").removeAttribute("disabled");
+                } else {
+                    document.getElementById("type").innerHTML = "ONE PLAYER";
+                    document.getElementById("select2").setAttribute("disabled", "disabled");
+                    document.getElementById("hint2").innerHTML = "<br>";
+                    localStorage.setItem("selection2", "0");
+                }
+            });
+
         </script>
 
 </body>

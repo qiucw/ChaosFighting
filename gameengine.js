@@ -14,6 +14,7 @@ function GameEngine() {
     this.ctx = null;
     this.surfaceWidth = null;
     this.surfaceHeight = null;
+    this.ai = false;
 }
 
 GameEngine.prototype.init = function (ctx) {
@@ -40,7 +41,6 @@ GameEngine.prototype.startInput = function () {
     }
 
     var that = this;
-
     this.ctx.canvas.addEventListener("keydown", function (e) {
         if (e.code === "KeyJ") that.j = true;
         if (e.code === "KeyW") that.w = true;
@@ -51,14 +51,16 @@ GameEngine.prototype.startInput = function () {
         if (e.code === "KeyA") that.a = true;
         if (e.code === "KeyS") that.s = true;
         if (e.code === "KeyL") that.l = true;
-        if (e.code === "ArrowUp") that.up = true;
-        if (e.code === "ArrowLeft") that.left = true;
-        if (e.code === "ArrowRight") that.right = true;
-        if (e.code === "ArrowDown") that.down = true;
-        if (e.code === "Numpad1") that.num1 = true;
-        if (e.code === "Numpad2") that.num2 = true;
-        if (e.code === "Numpad4") that.num4 = true;
-        if (e.code === "Numpad5") that.num5 = true;
+        if (this.ai != true){
+            if (e.code === "ArrowUp") that.up = true;
+            if (e.code === "ArrowLeft") that.left = true;
+            if (e.code === "ArrowRight") that.right = true;
+            if (e.code === "ArrowDown") that.down = true;
+            if (e.code === "Numpad1") that.num1 = true;
+            if (e.code === "Numpad2") that.num2 = true;
+            if (e.code === "Numpad4") that.num4 = true;
+            if (e.code === "Numpad5") that.num5 = true;
+        }
         if (e.code === "Numpad9") that.num9 = true;
         if (e.code === "Numpad8") that.num8 = true;
     }, false);
@@ -68,19 +70,21 @@ GameEngine.prototype.startInput = function () {
         if (e.code === "KeyW") that.w = false;
         if (e.code === "KeyK") that.k = false;
         if (e.code === "KeyU") that.u = false;
-        // if (e.code === "KeyI") that.i = false;
+        if (e.code === "KeyI") that.i = false;
         if (e.code === "KeyD") that.d = false;
         if (e.code === "KeyA") that.a = false;
         if (e.code === "KeyS") that.s = false;
         if (e.code === "KeyL") that.l = false;
-        if (e.code === "ArrowUp") that.up = false;
-        if (e.code === "ArrowLeft") that.left = false;
-        if (e.code === "ArrowRight") that.right = false;
-        if (e.code === "ArrowDown") that.down = false;
-        if (e.code === "Numpad1") that.num1 = false;
-        if (e.code === "Numpad2") that.num2 = false;
-        if (e.code === "Numpad4") that.num4 = false;
-        // if (e.code === "Numpad5") that.num5 = false;
+        if (this.ai != true){
+            if (e.code === "ArrowUp") that.up = false;
+            if (e.code === "ArrowLeft") that.left = false;
+            if (e.code === "ArrowRight") that.right = false;
+            if (e.code === "ArrowDown") that.down = false;
+            if (e.code === "Numpad1") that.num1 = false;
+            if (e.code === "Numpad2") that.num2 = false;
+            if (e.code === "Numpad4") that.num4 = false;
+            if (e.code === "Numpad5") that.num5 = false;
+        }
         if (e.code === "Numpad9") that.num9 = false;
         if (e.code === "Numpad8") that.num8 = false;
     }, false);

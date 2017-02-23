@@ -3,6 +3,7 @@ function Character(game, asset, playerNumber, characterNumber) {
 
     this.playerNumber = playerNumber;
     this.characterNumber = characterNumber;
+    // this.count = 0;
     this.goF = false;
     this.goB = false;
     this.jump = false;
@@ -15,10 +16,12 @@ function Character(game, asset, playerNumber, characterNumber) {
     this.opponent = null;
     this.healthPoint = 100;
     this.power = 100;
-    this.speed = 300;
+    this.speed = 500;
     this.game = game;
     this.ctx = game.ctx;
-    if (characterNumber == 1){
+    this.hitSound = asset.getAsset("./img/hit.mp3");
+    if (characterNumber == 0){
+        this.sound = asset.getAsset("./GOKU/superSound.mp3");
         if (playerNumber == 1){
             this.animation = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
             this.ki = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
@@ -30,7 +33,7 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.lightBoxing = new Animation(asset.getAsset("./RYU/right/lightBoxing.gif"), 94, 91, 3, 0.12, 3, false, 3);
             this.middleBoxing = new Animation(asset.getAsset("./RYU/right/middleBoxing.gif"), 115, 95, 5, 0.12, 5, false, 3);
             this.jumpUp = new Animation(asset.getAsset("./RYU/right/jumpUp.gif"), 58, 109, 8, 0.12, 8, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"),  2000, 1000);
             this.x = 200;
             this.y = 400;
         } else{
@@ -44,7 +47,7 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.lightBoxing = new Animation(asset.getAsset("./RYU/left/lightBoxing.gif"), 94, 91, 3, 0.12, 3, false, 3);
             this.middleBoxing = new Animation(asset.getAsset("./RYU/left/middleBoxing.gif"), 115, 95, 5, 0.12, 5, false, 3);
             this.jumpUp = new Animation(asset.getAsset("./RYU/left/jumpUp.gif"), 58, 109, 8, 0.12, 8, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"),  2000, 1000);
             this.x = 1050;
             this.y = 400;
         }
@@ -52,75 +55,76 @@ function Character(game, asset, playerNumber, characterNumber) {
         this.sound = asset.getAsset("./GOKU/superSound.mp3");
         if (playerNumber == 1){
             this.animation = new Animation(asset.getAsset("./GOKU/right/wait.png"), 48, 86, 2, 0.10, 2, true, 3);
-            this.goForward = new Animation(asset.getAsset("./GOKU/right/goForward.png"), 76, 79, 2, 0.25, 2, true, 3);
-            this.goBack = new Animation(asset.getAsset("./GOKU/right/goBack.png"), 57, 78, 2, 0.25, 2, true, 3);
-            this.lightBoxing = new Animation(asset.getAsset("./GOKU/right/lightBoxing.png"), 87, 78, 2, 0.12, 2, false, 3);
-            this.middleBoxing = new Animation(asset.getAsset("./GOKU/right/heavyBoxing.png"), 80, 89, 2, 0.2, 2, false, 3);
+            this.goForward = new Animation(asset.getAsset("./GOKU/right/goForward.png"), 76, 79, 2, 0.25, 2, true, 3.2);
+            this.goBack = new Animation(asset.getAsset("./GOKU/right/goBack.png"), 57, 78, 2, 0.25, 2, true, 3.2);
+            this.lightBoxing = new Animation(asset.getAsset("./GOKU/right/lightBoxing.png"), 87, 78, 2, 0.12, 2, false, 3.2);
+            this.middleBoxing = new Animation(asset.getAsset("./GOKU/right/heavyBoxing.png"), 80, 89, 2, 0.2, 2, false, 2.9);
             this.jumpUp = new Animation(asset.getAsset("./GOKU/right/jumpUp.png"), 40, 91, 3, 0.18, 3, false, 3);
-            this.guard = new Animation(asset.getAsset("./GOKU/right/guard.png"), 37, 88, 1, 0.12, 1, true, 3);
-            this.hit = new Animation(asset.getAsset("./GOKU/right/hit.png"), 56, 91, 1, 0.12, 1, true, 3);
-            this.ki = new Animation(asset.getAsset("./GOKU/right/ki.png"), 60, 96, 2, 0.12, 2, true, 3);
-            this.super = new Animation(asset.getAsset("./GOKU/right/super.png"), 53, 77, 13, 0.12, 13, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), 0, 0);
+            this.guard = new Animation(asset.getAsset("./GOKU/right/guard.png"), 37, 88, 1, 0.12, 1, true, 2.9);
+            this.hit = new Animation(asset.getAsset("./GOKU/right/hit.png"), 56, 91, 1, 0.12, 1, true, 2.8);
+            this.ki = new Animation(asset.getAsset("./GOKU/right/ki.png"), 60, 96, 2, 0.12, 2, true, 2.7);
+            this.super = new Animation(asset.getAsset("./GOKU/right/super.png"), 53, 77, 13, 0.12, 13, false, 3.3);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), -2000, 1000);
             this.x = 220;
             this.y = 400;
         } else {
             this.animation = new Animation(asset.getAsset("./GOKU/left/wait.png"), 48, 86, 2, 0.10, 2, true, 3);
-            this.goForward = new Animation(asset.getAsset("./GOKU/left/goForward.png"), 76, 79, 2, 0.25, 2, true, 3);
-            this.goBack = new Animation(asset.getAsset("./GOKU/left/goBack.png"), 57, 78, 2, 0.25, 2, true, 3);
-            this.lightBoxing = new Animation(asset.getAsset("./GOKU/left/lightBoxing.png"), 87, 78, 2, 0.12, 2, false, 3);
-            this.middleBoxing = new Animation(asset.getAsset("./GOKU/left/heavyBoxing.png"), 80, 89, 2, 0.2, 2, false, 3);
+            this.goForward = new Animation(asset.getAsset("./GOKU/left/goForward.png"), 76, 79, 2, 0.25, 2, true, 3.2);
+            this.goBack = new Animation(asset.getAsset("./GOKU/left/goBack.png"), 57, 78, 2, 0.25, 2, true, 3.2);
+            this.lightBoxing = new Animation(asset.getAsset("./GOKU/left/lightBoxing.png"), 87, 78, 2, 0.12, 2, false, 3.2);
+            this.middleBoxing = new Animation(asset.getAsset("./GOKU/left/heavyBoxing.png"), 80, 89, 2, 0.2, 2, false, 2.9);
             this.jumpUp = new Animation(asset.getAsset("./GOKU/left/jumpUp.png"), 40, 91, 3, 0.18, 3, false, 3);
-            this.guard = new Animation(asset.getAsset("./GOKU/left/guard.png"), 37, 88, 1, 0.12, 1, true, 3);
-            this.hit = new Animation(asset.getAsset("./GOKU/left/hit.png"), 56, 91, 1, 0.12, 1, true, 3);
-            this.ki = new Animation(asset.getAsset("./GOKU/left/ki.png"), 60, 96, 2, 0.12, 2, true, 3);
-            this.super = new Animation(asset.getAsset("./GOKU/left/super.png"), 53, 77, 12, 0.24, 12, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./GOKU/left/superFlash.png"), 0, 0);
+            this.guard = new Animation(asset.getAsset("./GOKU/left/guard.png"), 37, 88, 1, 0.12, 1, true, 2.9);
+            this.hit = new Animation(asset.getAsset("./GOKU/left/hit.png"), 56, 91, 1, 0.12, 1, true, 2.8);
+            this.ki = new Animation(asset.getAsset("./GOKU/left/ki.png"), 60, 96, 2, 0.12, 2, true, 2.7);
+            this.super = new Animation(asset.getAsset("./GOKU/left/super.png"), 53, 77, 12, 0.24, 12, false, 3.3);
+            this.flash = new Flash(this.game, asset.getAsset("./GOKU/left/superFlash.png"), 2000, 1000);
             this.x = 1000;
             this.y = 400;
         }
     } else if (characterNumber == 3){
         this.sound = asset.getAsset("./ITACHI/superSound.mp3");
         if (playerNumber == 1){
-            this.animation = new Animation(asset.getAsset("./ITACHI/right/wait.png"), 29, 65, 4, 0.10, 4, true, 3);
-            this.goForward = new Animation(asset.getAsset("./ITACHI/right/goForward.png"), 58, 50, 5, 0.25, 5, true, 3);
-            this.goBack = new Animation(asset.getAsset("./ITACHI/right/goBack.png"), 36, 29, 3, 0.25, 3, true, 3);
-            this.lightBoxing = new Animation(asset.getAsset("./ITACHI/right/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3);
-            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/right/heavyBoxing.png"), 64, 56, 3, 0.2, 3, false, 3);
-            this.jumpUp = new Animation(asset.getAsset("./ITACHI/right/jumpUp.png"), 56, 61, 3, 0.18, 3, false, 3);
-            this.guard = new Animation(asset.getAsset("./ITACHI/right/guard.png"), 26, 55, 1, 0.12, 1, true, 3);
-            this.hit = new Animation(asset.getAsset("./ITACHI/right/hit.png"), 40, 57, 1, 0.12, 1, true, 3);
-            this.ki = new Animation(asset.getAsset("./ITACHI/right/ki.png"), 50, 62, 4, 0.12, 4, true, 3);
+            this.animation = new Animation(asset.getAsset("./ITACHI/right/wait.png"), 29, 65, 4, 0.10, 4, true, 3.5);
+            this.goForward = new Animation(asset.getAsset("./ITACHI/right/goForward.png"), 58, 50, 5, 0.25, 5, true, 3.8);
+            this.goBack = new Animation(asset.getAsset("./ITACHI/right/goBack.png"), 36, 29, 3, 0.25, 3, true, 3.5);
+            this.lightBoxing = new Animation(asset.getAsset("./ITACHI/right/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3.5);
+            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/right/heavyBoxing.png"), 64, 56, 3, 0.2, 3, false, 3.5);
+            this.jumpUp = new Animation(asset.getAsset("./ITACHI/right/jumpUp.png"), 56, 61, 3, 0.18, 3, false, 3.5);
+            this.guard = new Animation(asset.getAsset("./ITACHI/right/guard.png"), 26, 55, 1, 0.12, 1, true, 4);
+            this.hit = new Animation(asset.getAsset("./ITACHI/right/hit.png"), 40, 57, 1, 0.12, 1, true, 3.8);
+            this.ki = new Animation(asset.getAsset("./ITACHI/right/ki.png"), 50, 62, 4, 0.12, 4, true, 3.5);
             this.super = new Animation(asset.getAsset("./ITACHI/right/super.png"), 51.6, 72, 25, 0.09, 25, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./ITACHI/right/superFlash.png"), 0, 0);
+            this.flash = new Flash(this.game, asset.getAsset("./ITACHI/right/superFlash.png"), -2000, 1000);
             this.x = 220;
-            this.y = 450;
+            this.y = 425;
         } else {
-            this.animation = new Animation(asset.getAsset("./ITACHI/left/wait.png"), 29, 65, 4, 0.10, 4, true, 3);
-            this.goForward = new Animation(asset.getAsset("./ITACHI/left/goForward.png"), 58, 50, 5, 0.25, 5, true, 3);
-            this.goBack = new Animation(asset.getAsset("./ITACHI/left/goBack.png"), 36, 29, 3, 0.25, 3, true, 3);
-            this.lightBoxing = new Animation(asset.getAsset("./ITACHI/left/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3);
-            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/left/heavyBoxing.png"), 64, 56, 3, 0.2, 3, false, 3);
-            this.jumpUp = new Animation(asset.getAsset("./ITACHI/left/jumpUp.png"), 56, 61, 3, 0.18, 3, false, 3);
-            this.guard = new Animation(asset.getAsset("./ITACHI/left/guard.png"), 26, 55, 1, 0.12, 1, true, 3);
-            this.hit = new Animation(asset.getAsset("./ITACHI/left/hit.png"), 40, 57, 1, 0.12, 1, true, 3);
-            this.ki = new Animation(asset.getAsset("./ITACHI/left/ki.png"), 50, 62, 4, 0.12, 4, true, 3);
+            this.animation = new Animation(asset.getAsset("./ITACHI/left/wait.png"), 29, 65, 4, 0.10, 4, true, 3.5);
+            this.goForward = new Animation(asset.getAsset("./ITACHI/left/goForward.png"), 58, 50, 5, 0.25, 5, true, 3.8);
+            this.goBack = new Animation(asset.getAsset("./ITACHI/left/goBack.png"), 36, 29, 3, 0.25, 3, true, 3.5);
+            this.lightBoxing = new Animation(asset.getAsset("./ITACHI/left/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3.5);
+            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/left/heavyBoxing.png"), 64, 56, 3, 0.2, 3, false, 3.5);
+            this.jumpUp = new Animation(asset.getAsset("./ITACHI/left/jumpUp.png"), 56, 61, 3, 0.18, 3, false, 3.5);
+            this.guard = new Animation(asset.getAsset("./ITACHI/left/guard.png"), 26, 55, 1, 0.12, 1, true, 4);
+            this.hit = new Animation(asset.getAsset("./ITACHI/left/hit.png"), 40, 57, 1, 0.12, 1, true, 3.8);
+            this.ki = new Animation(asset.getAsset("./ITACHI/left/ki.png"), 50, 62, 4, 0.12, 4, true, 3.5);
             this.super = new Animation(asset.getAsset("./ITACHI/left/super.png"), 51.6, 72, 25, 0.09, 25, false, 3);
-            this.flash = new flash(this.game, asset.getAsset("./ITACHI/left/superFlash.png"), 0, 0);
+            this.flash = new Flash(this.game, asset.getAsset("./ITACHI/left/superFlash.png"), 2000, 1000);
             this.x = 1000;
-            this.y = 450;
+            this.y = 425;
 
         }
     }
     this.originalY = this.y;
-    this.point1 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-    this.point2 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
-    this.point3 = new point(this.game, asset.getAsset("./img/point.png"), 0, 620);
+    this.point1 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
+    this.point2 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
+    this.point3 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
     this.game.addEntity(this.flash);
     this.game.addEntity(this.point1);
     this.game.addEntity(this.point2);
     this.game.addEntity(this.point3);
     this.sound.loop = false;
+    this.hitSound.loop = false;
 }
 
 Character.prototype.setOpponent = function(opponent) {
@@ -146,207 +150,217 @@ Character.prototype.draw = function () {
         this.lightBoxing.drawFrame(this.game.clockTick, this.ctx, this.x - this.lightBoxing.frameWidth * n, this.y);
     }else if (this.k){
         this.ki.drawFrame(this.game.clockTick, this.ctx, this.x - this.ki.frameWidth * n, this.y);
+    }else if (this.jump){
+        this.jumpUp.drawFrame(this.game.clockTick, this.ctx, this.x - this.goBack.frameWidth * n, this.y);
     }else if (this.goF){
         this.goForward.drawFrame(this.game.clockTick, this.ctx, this.x - this.goForward.frameWidth * n, this.y);
     }else if (this.goB){
         this.goBack.drawFrame(this.game.clockTick, this.ctx, this.x - this.goBack.frameWidth * n, this.y);
-    }else if (this.jump){
-        this.jumpUp.drawFrame(this.game.clockTick, this.ctx, this.x - this.goBack.frameWidth * n, this.y);
     }else {
         this.animation.drawFrame(this.game.clockTick, this.ctx, this.x - this.animation.frameWidth * n, this.y);
     }
-}
+};
+
+
+Character.prototype.canAction = function(){
+    return !(this.h || this.k || this.sup || this.g || this.jump || this.lightB || this.middleB);
+};
+
+Character.prototype.canMove = function(){
+    return !(this.h || this.k || this.sup || this.g || this.lightB || this.middleB);
+};
 
 Character.prototype.update = function () {
-    if (this.hit != true){
-        if (this.playerNumber == 1) {
-            if (this.game.u && this.k != true && this.sup != true) {
-                this.g = true;
-            } else {
-                this.g = false;
-                if (this.game.s && this.sup != true) {
-                    this.k = true;
-                    if (this.power < 300){
-                        this.power += 1;
-                    }
-                } else {
-                    this.k = false;
-                    if (this.game.i && this.power >= 100) {
-                        this.sup = true;
-                        if (this.super.elapsedTime < 0.5){
-                            this.sound.play();
-                        }
-                        if (this.super.isDone()) {
-                            this.super.elapsedTime = 0;
-                            this.game.i = false;
-                            this.sup = false;
-                            this.power -= 100;
-                        }
-                    }
-                    if (this.characterNumber == 2){
-                        if (this.super.currentFrame() > 2){
-                            this.flash.x = this.x + 150 ;
-                            this.flash.y = this.y;
-                        }
-                    } else if (this.characterNumber == 3){
-                        if (this.super.currentFrame() > 8){
-                            this.flash.x = this.x + 150 ;
-                            this.flash.y = this.y - 50;
-                        }
-                    }
-                    if (this.sup != true  && this.h != true) {
-                        this.flash.x = 0;
-                        this.flash.y = 720;
-                        if (this.game.w) {
-                            this.jump = true;
-                        } else if (this.game.j && this.canAttack()) {
-                            this.lightB = true;
-                        } else if (this.game.k && this.canAttack()) {
-                            this.middleB = true;
-                        } else {
-                            if (this.game.d && this.jump != true) {
-                                this.goF = true;
-                                if (this.animation.elapsedTime < this.animation.totalTime && this.x + this.goForward.frameWidth * 4 < this.opponent.x)
-                                    this.x += this.game.clockTick * this.speed;
-                            } else {
-                                this.goF = false;
-                            }
-                            if (this.game.a && this.jump != true) {
-                                this.goB = true;
-                                if (this.animation.elapsedTime < this.animation.totalTime && this.x > 0)
-                                    this.x -= this.game.clockTick * this.speed;
-                            } else {
-                                this.goB = false;
-                            }
-                        }
-                    }
-                }
+    if (this.playerNumber == 1){
+        if (this.canAction()) {
+
+            if (this.game.s){
+                this.k = true;
             }
-        } else {
-            if (this.game.num4 && this.k != true && this.super != true) {
+            if (this.game.w){
+                this.jump = true;
+            }
+            if (this.game.j){
+                this.lightB = true;
+            }
+            if (this.game.k){
+                this.middleB = true;
+            }
+            if (this.game.u){
                 this.g = true;
-            } else {
-                this.g = false;
-                if (this.game.down && this.super != true) {
-                    this.k = true;
-                    if (this.power < 300){
-                        this.power += 1;
-                    }
-                } else {
-                    this.k = false;
-                    if (this.game.num5 && this.power >= 100) {
-                        this.sup = true;
-                        if (this.super.elapsedTime < 0.5){
-                            this.sound.play();
-                        }
-                        if (this.super.isDone()) {
-                            this.super.elapsedTime = 0;
-                            this.game.num5 = false;
-                            this.sup = false;
-                            this.power -= 100;
-                        }
-                    }
-                    if (this.characterNumber == 2){
-                        if (this.super.currentFrame() > 2){
-                            this.flash.x = this.x - 350 - this.super.frameWidth * 3 ;
-                            this.flash.y = this.y;
-                        }
-                    } else if (this.characterNumber == 3) {
-                        if (this.super.currentFrame() > 8){
-                            this.flash.x = this.x - 350 - this.super.frameWidth * 3 ;
-                            this.flash.y = this.y;
-                        }
-                    }
-                    if (this.sup != true  && this.h != true) {
-                        this.flash.x = 2000;
-                        this.flash.y = 1000;
-                        if (this.game.up) {
-                            this.jump = true;
-                        } else if (this.game.num1 && this.canAttack()) {
-                            this.lightB = true;
-                        } else if (this.game.num2 && this.canAttack()) {
-                            this.middleB = true;
-                        } else {
-                            if (this.game.num4) {
-                                this.g = true;
-                            } else {
-                                this.g = false;
-                            }
-                            if (this.game.left && this.jump != true) {
-                                this.goF = true;
-                                if (this.animation.elapsedTime < this.animation.totalTime && this.x - this.goForward.frameWidth * 4 > this.opponent.x)
-                                    this.x -= this.game.clockTick * this.speed;
-                            } else {
-                                this.goF = false;
-                            }
-                            if (this.game.right && this.jump != true) {
-                                this.goB = true;
-                                if (this.animation.elapsedTime < this.animation.totalTime && this.x < 1280)
-                                    this.x += this.game.clockTick * this.speed;
-                            } else {
-                                this.goB = false;
-                            }
-                        }
-                    }
-                }
+            }
+            if (this.game.i && this.power >= 100){
+                this.sup = true;
             }
         }
-
-        if (this.jump) {
-            if (this.jumpUp.isDone()) {
-                this.y -= 8;
-                this.jumpUp.elapsedTime = 0;
-                this.jump = false;
+        if (this.canMove()){
+            if (this.game.d){
+                this.goF = true;
+                if (this.animation.elapsedTime < this.animation.totalTime && this.x + this.goForward.frameWidth * 4 < this.opponent.x)
+                    this.x += this.game.clockTick * this.speed;
+            } else {
+                this.goF = false;
             }
-            var jumpDistance = this.jumpUp.elapsedTime / this.jumpUp.totalTime;
-            var totalHeight = 300;
+            if (this.game.a){
+                this.goB = true;
+                if (this.animation.elapsedTime < this.animation.totalTime && this.x > 0)
+                    this.x -= this.game.clockTick * this.speed;
+            } else {
+                this.goB = false;
+            }
 
-            if (jumpDistance > 0.5)
-                jumpDistance = 1 - jumpDistance;
+        }
 
-            var height = totalHeight * (-4 * (jumpDistance * jumpDistance - jumpDistance));
-            this.y = this.originalY - height;
-        } else {
-            if (this.g) {
-                if (this.guard.isDone()) {
-                    this.guard.elapsedTime = 0;
-                    this.g = false;
+        if (!this.game.u){
+            this.g = false;
+        }
+
+        if (!this.game.s){
+            this.k = false;
+        }
+    } else {
+        if (this.canAction()) {
+            if (this.game.down){
+                this.k = true;
+            }
+            if (this.game.up){
+                this.jump = true;
+            }
+            if (this.game.num1){
+                this.lightB = true;
+            }
+            if (this.game.num2){
+                this.middleB = true;
+            }
+            if (this.game.num4){
+                this.g = true;
+            }
+            if (this.game.num5 && this.power >= 100){
+                this.sup = true;
+            }
+        }
+        if (this.canMove()){
+            if (this.game.left){
+                this.goF = true;
+                if (this.animation.elapsedTime < this.animation.totalTime && this.x - this.goForward.frameWidth * 4 > this.opponent.x)
+                    this.x -= this.game.clockTick * this.speed;
+            } else {
+                this.goF = false;
+            }
+            if (this.game.right){
+                this.goB = true;
+                if (this.animation.elapsedTime < this.animation.totalTime && this.x < 1280)
+                    this.x += this.game.clockTick * this.speed;
+            } else {
+                this.goB = false;
+            }
+
+        }
+
+        if (!this.game.num4){
+            this.g = false;
+        }
+
+        if (!this.game.down){
+            this.k = false;
+        }
+    }
+
+    if (this.power < 300 && this.k){
+        this.power += 1;
+    }
+    if (this.sup) {
+        if (this.super.elapsedTime < 0.1){
+            this.sound.play();
+        }
+        if (this.super.isDone()) {
+            this.super.elapsedTime = 0;
+            this.sup = false;
+            this.power -=100;
+            this.flash.x = 2000;
+            this.flash.y = 1000;
+        }
+        //change Flash x and y
+        if (this.characterNumber == 2){
+            if (this.super.currentFrame() > 2){
+                if (this.playerNumber == 1){
+                    this.flash.x = this.x + 150 ;
+                    this.flash.y = this.y;
+                } else {
+                    this.flash.x = this.x - 350 - this.super.frameWidth * 3 ;
+                    this.flash.y = this.y;
                 }
             }
-            if (this.lightB) {
-                if (this.lightBoxing.isDone()) {
-                    this.lightBoxing.elapsedTime = 0;
-                    this.lightB = false;
-                }
-            }
-            if (this.middleB) {
-                if (this.middleBoxing.isDone()) {
-                    this.middleBoxing.elapsedTime = 0;
-                    this.middleB = false;
+        } else if (this.characterNumber == 3){
+            if (this.super.currentFrame() > 8) {
+                if (this.playerNumber == 1) {
+                    this.flash.x = this.x + 150;
+                    this.flash.y = this.y - 50;
+                } else {
+                    this.flash.x = this.x - 350 - this.super.frameWidth * 3;
+                    this.flash.y = this.y;
                 }
             }
         }
     }
+    if (this.lightB) {
+        if (this.lightBoxing.isDone()) {
+            this.lightBoxing.elapsedTime = 0;
+            this.lightB = false;
+        }
+    }
+    if (this.middleB) {
+        if (this.middleBoxing.isDone()) {
+            this.middleBoxing.elapsedTime = 0;
+            this.middleB = false;
+        }
+    }
+    if (this.jump) {
+        if (this.jumpUp.isDone()) {
+            this.jumpUp.elapsedTime = 0;
+            this.jump = false;
+        }
+        var jumpDistance = this.jumpUp.elapsedTime / this.jumpUp.totalTime;
+        var totalHeight = 300;
 
+        if (jumpDistance > 0.5)
+            jumpDistance = 1 - jumpDistance;
 
+        this.y = this.originalY - totalHeight * (-4 * (jumpDistance * jumpDistance - jumpDistance));
+    }
+    if (this.h){
+        this.super.elapsedTime = 0;
+        this.sup = false;
+        this.sound.pause();
+        this.sound.currentTime = 0;
+        this.lightBoxing.elapsedTime = 0;
+        this.middleBoxing.elapsedTime = 0;
+        this.jumpUp.elapsedTime = 0;
+        this.jump =false;
+        this.y = this.originalY;
+    }
 
     if (Math.abs(this.x - this.opponent.x) < 350 === true && Math.abs(this.y - this.opponent.y) < 150 && (this.lightB || this.middleB)){
         if (this.lightB){
-            this.opponent.h = true;
             if (this.opponent.g){
                 this.opponent.healthPoint -= 0.08;
+                this.opponent.hitSound.play();
                 this.power += 0.25;
             } else {
                 this.opponent.healthPoint -= 0.15;
+                this.opponent.hitSound.play();
                 this.power += 0.5;
+                this.opponent.h = true;
             }
         }
         if (this.middleB){
             if (this.opponent.g){
                 this.opponent.healthPoint -= 0.15;
+                this.opponent.hitSound.play();
                 this.power += 0.5;
             } else {
                 this.opponent.healthPoint -= 0.3;
+                this.opponent.hitSound.play();
                 this.opponent.h = true;
                 this.power += 1;
             }
@@ -355,11 +369,9 @@ Character.prototype.update = function () {
     } else if (this.flash.x != 2000 && Math.abs(this.flash.x + this.flash.spritesheet.width - this.opponent.x) < 350 && Math.abs(this.y - this.opponent.y) < 150){
         if (this.opponent.g){
             this.opponent.healthPoint -= 0.2;
-            // this.power += 2;
         } else {
             this.opponent.healthPoint -= 0.4;
             this.opponent.h = true;
-            // this.power += 4;
         }
     }else {
         this.opponent.h = false;
@@ -399,7 +411,6 @@ Character.prototype.update = function () {
         this.point3.y = 720;
     }
 
-
     if (this.healthPoint < 0 || this.opponent.healthPoint < 0){
         if (this.opponent.healthPoint < 0){
             localStorage.setItem("playerNumber", this.playerNumber);
@@ -410,40 +421,38 @@ Character.prototype.update = function () {
         }
         window.location.href = "gameover.html";
     }
-}
+};
 
-Character.prototype.canAttack = function(){
-    return (!this.opponent.lightB && !this.opponent.middleB || Math.abs(this.x - this.opponent.x) > 350) && !this.jump ;
-}
 
-function flash(game, spritesheet, x, y) {
+function Flash(game, spritesheet, x, y) {
     this.x = x;
     this.y = y;
     this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
-};
+}
 
-flash.prototype.draw = function () {
+Flash.prototype.draw = function () {
     this.ctx.drawImage(this.spritesheet,
         this.x, this.y, this.spritesheet.width * 2, this.spritesheet.height * 2);
 };
 
-flash.prototype.update = function () {
+Flash.prototype.update = function () {
 };
 
-function point(game, spritesheet, x, y) {
+function Point(game, spritesheet, x, y) {
     this.x = x;
     this.y = y;
     this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
-};
+    console.log("add Flash");
+}
 
-point.prototype.draw = function () {
+Point.prototype.draw = function () {
     this.ctx.drawImage(this.spritesheet,
         this.x, this.y, this.spritesheet.width, this.spritesheet.height);
 };
 
-point.prototype.update = function () {
+Point.prototype.update = function () {
 };
