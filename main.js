@@ -156,7 +156,6 @@ AM.queueDownload("./img/bar.gif");
 AM.queueDownload("./img/point.png");
 AM.queueDownload("./img/hit.mp3");
 
-
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
