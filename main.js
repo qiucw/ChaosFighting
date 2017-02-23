@@ -153,7 +153,7 @@ AM.queueDownload("./RYU/right/wait.gif");
 
 AM.queueDownload("./img/StageChina.jpg");
 AM.queueDownload("./img/bar.gif");
-AM.queueDownload("./img/Point.png");
+AM.queueDownload("./img/point.png");
 AM.queueDownload("./img/hit.mp3");
 
 AM.downloadAll(function () {
