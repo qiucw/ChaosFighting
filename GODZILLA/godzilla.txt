@@ -1,0 +1,11 @@
+wait 70 63
+superFlash 88 60
+super 79 60
+lightBoxing 67 64
+heavyBoxing 88 48
+ki 70 65
+jumpUp 70 65
+hit 60 64
+guard 73 47
+goForward 72 63
+back 72 63

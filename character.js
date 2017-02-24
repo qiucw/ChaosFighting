@@ -20,35 +20,36 @@ function Character(game, asset, playerNumber, characterNumber) {
     this.game = game;
     this.ctx = game.ctx;
     this.hitSound = asset.getAsset("./img/hit.mp3");
-    if (characterNumber == 0){
-        this.sound = asset.getAsset("./GOKU/superSound.mp3");
+    this.sound = asset.getAsset("./GODZILLA/superSound.mp3");
+    if (characterNumber == 1){
+        this.sound = asset.getAsset("./GODZILLA/superSound.mp3");
         if (playerNumber == 1){
-            this.animation = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
-            this.ki = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
-            this.hit = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
-            this.goForward = new Animation(asset.getAsset("./RYU/right/goForward.gif"), 66, 92, 6, 0.25, 6, true, 3);
-            this.goBack = new Animation(asset.getAsset("./RYU/right/goBack.gif"), 63.4, 91, 6, 0.25, 6, true, 3);
-            this.super = new Animation(asset.getAsset("./RYU/right/heavyKick.gif"), 122, 94, 5, 0.12, 5, false, 3);
-            this.guard = new Animation(asset.getAsset("./RYU/right/lightKick.gif"), 116, 94, 5, 0.12, 5, false, 3);
-            this.lightBoxing = new Animation(asset.getAsset("./RYU/right/lightBoxing.gif"), 94, 91, 3, 0.12, 3, false, 3);
-            this.middleBoxing = new Animation(asset.getAsset("./RYU/right/middleBoxing.gif"), 115, 95, 5, 0.12, 5, false, 3);
-            this.jumpUp = new Animation(asset.getAsset("./RYU/right/jumpUp.gif"), 58, 109, 8, 0.12, 8, false, 3);
-            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"),  2000, 1000);
-            this.x = 200;
+            this.animation = new Animation(asset.getAsset("./GODZILLA/right/wait.png"), 70, 63, 1, 0.10, 1, true, 3);
+            this.goForward = new Animation(asset.getAsset("./GODZILLA/right/goForward.png"), 72, 63, 3, 0.25, 3, true, 3.2);
+            this.goBack = new Animation(asset.getAsset("./GODZILLA/right/goBack.png"), 72, 63, 3, 0.25, 3, true, 3.2);
+            this.lightBoxing = new Animation(asset.getAsset("./GODZILLA/right/lightBoxing.png"), 84, 62, 2, 0.12, 2, false, 3.2);
+            this.middleBoxing = new Animation(asset.getAsset("./GODZILLA/right/heavyBoxing.png"), 88, 48, 3, 0.2, 3, false, 2.9);
+            this.jumpUp = new Animation(asset.getAsset("./GODZILLA/right/jumpUp.png"), 70, 65, 2, 0.18, 2, false, 2);
+            this.guard = new Animation(asset.getAsset("./GODZILLA/right/guard.png"), 73, 47, 1, 0.12, 1, true, 2.9);
+            this.hit = new Animation(asset.getAsset("./GODZILLA/right/hit.png"), 60, 64, 1, 0.12, 1, true, 2.8);
+            this.ki = new Animation(asset.getAsset("./GODZILLA/right/ki.png"), 70, 65, 2, 0.12, 2, true, 2.7);
+            this.super = new Animation(asset.getAsset("./GODZILLA/right/super.png"), 79, 60, 5, 0.5, 5, false, 3.3);
+            this.flash = new Flash(this.game, asset.getAsset("./GODZILLA/right/superFlash.png"), -2000, 1000);
+            this.x = 220;
             this.y = 400;
         } else{
-            this.animation = new Animation(asset.getAsset("./RYU/left/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
-            this.ki = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
-            this.hit = new Animation(asset.getAsset("./RYU/right/wait.gif"), 62, 93, 6, 0.10, 6, true, 3);
-            this.goForward = new Animation(asset.getAsset("./RYU/left/goForward.gif"), 66, 92, 6, 0.25, 6, true, 3);
-            this.goBack = new Animation(asset.getAsset("./RYU/left/goBack.gif"), 63.4, 91, 6, 0.25, 6, true, 3);
-            this.super = new Animation(asset.getAsset("./RYU/left/heavyKick.gif"), 122, 94, 5, 0.12, 5, false, 3);
-            this.guard = new Animation(asset.getAsset("./RYU/left/lightKick.gif"), 116, 94, 5, 0.12, 5, false, 3);
-            this.lightBoxing = new Animation(asset.getAsset("./RYU/left/lightBoxing.gif"), 94, 91, 3, 0.12, 3, false, 3);
-            this.middleBoxing = new Animation(asset.getAsset("./RYU/left/middleBoxing.gif"), 115, 95, 5, 0.12, 5, false, 3);
-            this.jumpUp = new Animation(asset.getAsset("./RYU/left/jumpUp.gif"), 58, 109, 8, 0.12, 8, false, 3);
-            this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"),  2000, 1000);
-            this.x = 1050;
+            this.animation = new Animation(asset.getAsset("./GODZILLA/left/wait.png"), 70, 63, 1, 0.10, 1, true, 3);
+            this.goForward = new Animation(asset.getAsset("./GODZILLA/left/goForward.png"), 72, 63, 3, 0.25, 3, true, 3.2);
+            this.goBack = new Animation(asset.getAsset("./GODZILLA/left/goBack.png"), 72, 63, 3, 0.25, 3, true, 3.2);
+            this.lightBoxing = new Animation(asset.getAsset("./GODZILLA/left/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3.2);
+            this.middleBoxing = new Animation(asset.getAsset("./GODZILLA/left/heavyBoxing.png"), 88, 48, 3, 0.2, 3, false, 2.9);
+            this.jumpUp = new Animation(asset.getAsset("./GODZILLA/left/jumpUp.png"), 70, 65, 2, 0.18, 2, false, 3);
+            this.guard = new Animation(asset.getAsset("./GODZILLA/left/guard.png"), 73, 47, 1, 0.12, 1, true, 2.9);
+            this.hit = new Animation(asset.getAsset("./GODZILLA/left/hit.png"), 60, 64, 1, 0.12, 1, true, 2.8);
+            this.ki = new Animation(asset.getAsset("./GODZILLA/left/ki.png"), 70, 65, 2, 0.12, 2, true, 2.7);
+            this.super = new Animation(asset.getAsset("./GODZILLA/left/super.png"), 79, 60, 5, 0.5, 5, false, 3.3);
+            this.flash = new Flash(this.game, asset.getAsset("./GODZILLA/left/superFlash.png"), 2000, 1000);
+            this.x = 1000;
             this.y = 400;
         }
     } else if (characterNumber == 2){
@@ -63,7 +64,7 @@ function Character(game, asset, playerNumber, characterNumber) {
             this.guard = new Animation(asset.getAsset("./GOKU/right/guard.png"), 37, 88, 1, 0.12, 1, true, 2.9);
             this.hit = new Animation(asset.getAsset("./GOKU/right/hit.png"), 56, 91, 1, 0.12, 1, true, 2.8);
             this.ki = new Animation(asset.getAsset("./GOKU/right/ki.png"), 60, 96, 2, 0.12, 2, true, 2.7);
-            this.super = new Animation(asset.getAsset("./GOKU/right/super.png"), 53, 77, 13, 0.12, 13, false, 3.3);
+            this.super = new Animation(asset.getAsset("./GOKU/right/super.png"), 53, 77, 13, 0.24, 13, false, 3.3);
             this.flash = new Flash(this.game, asset.getAsset("./GOKU/right/superFlash.png"), -2000, 1000);
             this.x = 220;
             this.y = 400;
@@ -86,29 +87,29 @@ function Character(game, asset, playerNumber, characterNumber) {
         this.sound = asset.getAsset("./ITACHI/superSound.mp3");
         if (playerNumber == 1){
             this.animation = new Animation(asset.getAsset("./ITACHI/right/wait.png"), 29, 65, 4, 0.10, 4, true, 3.5);
-            this.goForward = new Animation(asset.getAsset("./ITACHI/right/goForward.png"), 58, 50, 5, 0.25, 5, true, 3.8);
-            this.goBack = new Animation(asset.getAsset("./ITACHI/right/goBack.png"), 36, 29, 3, 0.25, 3, true, 3.5);
+            this.goForward = new Animation(asset.getAsset("./ITACHI/right/goBack.png"), 36, 29, 3, 0.25, 3, true, 2.5);
+            this.goBack = new Animation(asset.getAsset("./ITACHI/right/goBack.png"), 36, 29, 3, 0.25, 3, true, 2.5);
             this.lightBoxing = new Animation(asset.getAsset("./ITACHI/right/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3.5);
-            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/right/heavyBoxing.png"), 64, 56, 3, 0.2, 3, false, 3.5);
+            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/right/heavyBoxing.png"), 64, 61, 4, 0.2, 4, false, 3.5);
             this.jumpUp = new Animation(asset.getAsset("./ITACHI/right/jumpUp.png"), 56, 61, 3, 0.18, 3, false, 3.5);
             this.guard = new Animation(asset.getAsset("./ITACHI/right/guard.png"), 26, 55, 1, 0.12, 1, true, 4);
             this.hit = new Animation(asset.getAsset("./ITACHI/right/hit.png"), 40, 57, 1, 0.12, 1, true, 3.8);
-            this.ki = new Animation(asset.getAsset("./ITACHI/right/ki.png"), 50, 62, 4, 0.12, 4, true, 3.5);
-            this.super = new Animation(asset.getAsset("./ITACHI/right/super.png"), 51.6, 72, 25, 0.09, 25, false, 3);
+            this.ki = new Animation(asset.getAsset("./ITACHI/right/ki.png"), 50, 63, 1, 0.12, 1, true, 3.6);
+            this.super = new Animation(asset.getAsset("./ITACHI/right/super.png"), 50, 63, 25, 0.09, 25, false, 3.5);
             this.flash = new Flash(this.game, asset.getAsset("./ITACHI/right/superFlash.png"), -2000, 1000);
             this.x = 220;
             this.y = 425;
         } else {
             this.animation = new Animation(asset.getAsset("./ITACHI/left/wait.png"), 29, 65, 4, 0.10, 4, true, 3.5);
-            this.goForward = new Animation(asset.getAsset("./ITACHI/left/goForward.png"), 58, 50, 5, 0.25, 5, true, 3.8);
-            this.goBack = new Animation(asset.getAsset("./ITACHI/left/goBack.png"), 36, 29, 3, 0.25, 3, true, 3.5);
+            this.goForward = new Animation(asset.getAsset("./ITACHI/right/goBack.png"), 36, 29, 3, 0.25, 3, true, 2.5);
+            this.goBack = new Animation(asset.getAsset("./ITACHI/left/goBack.png"), 36, 29, 3, 0.25, 3, true, 2.5);
             this.lightBoxing = new Animation(asset.getAsset("./ITACHI/left/lightBoxing.png"), 67, 64, 2, 0.12, 2, false, 3.5);
-            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/left/heavyBoxing.png"), 64, 56, 3, 0.2, 3, false, 3.5);
+            this.middleBoxing = new Animation(asset.getAsset("./ITACHI/left/heavyBoxing.png"), 64, 61, 4, 0.2, 4, false, 3.5);
             this.jumpUp = new Animation(asset.getAsset("./ITACHI/left/jumpUp.png"), 56, 61, 3, 0.18, 3, false, 3.5);
             this.guard = new Animation(asset.getAsset("./ITACHI/left/guard.png"), 26, 55, 1, 0.12, 1, true, 4);
             this.hit = new Animation(asset.getAsset("./ITACHI/left/hit.png"), 40, 57, 1, 0.12, 1, true, 3.8);
-            this.ki = new Animation(asset.getAsset("./ITACHI/left/ki.png"), 50, 62, 4, 0.12, 4, true, 3.5);
-            this.super = new Animation(asset.getAsset("./ITACHI/left/super.png"), 51.6, 72, 25, 0.09, 25, false, 3);
+            this.ki = new Animation(asset.getAsset("./ITACHI/left/ki.png"), 50, 63, 1, 0.12, 1, true, 3.6);
+            this.super = new Animation(asset.getAsset("./ITACHI/left/super.png"), 50, 63, 25, 0.09, 25, false, 3.5);
             this.flash = new Flash(this.game, asset.getAsset("./ITACHI/left/superFlash.png"), 2000, 1000);
             this.x = 1000;
             this.y = 425;
@@ -297,8 +298,8 @@ Character.prototype.update = function () {
                     this.flash.x = this.x + 150;
                     this.flash.y = this.y - 50;
                 } else {
-                    this.flash.x = this.x - 350 - this.super.frameWidth * 3;
-                    this.flash.y = this.y;
+                    this.flash.x = this.x - 300 - this.super.frameWidth * 3;
+                    this.flash.y = this.y - 50;
                 }
             }
         }
