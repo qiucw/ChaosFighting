@@ -117,9 +117,10 @@ function Character(game, asset, playerNumber, characterNumber) {
         }
     }
     this.originalY = this.y;
-    this.point1 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
-    this.point2 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
-    this.point3 = new Point(this.game, asset.getAsset("./img/Point.png"), 0, 620);
+
+    this.point1 = new Point(this.game, asset.getAsset("./img/point.png"), 0, 620);
+    this.point2 = new Point(this.game, asset.getAsset("./img/point.png"), 0, 620);
+    this.point3 = new Point(this.game, asset.getAsset("./img/point.png"), 0, 620);
     this.game.addEntity(this.flash);
     this.game.addEntity(this.point1);
     this.game.addEntity(this.point2);
