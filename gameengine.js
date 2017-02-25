@@ -1,6 +1,13 @@
 /*
  This code was copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
 */
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
+
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
