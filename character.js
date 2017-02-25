@@ -3,7 +3,6 @@ function Character(game, asset, playerNumber, characterNumber) {
 
     this.playerNumber = playerNumber;
     this.characterNumber = characterNumber;
-    // this.count = 0;
     this.goF = false;
     this.goB = false;
     this.jump = false;
@@ -175,10 +174,6 @@ Character.prototype.canAction = function(){
 };
 
 Character.prototype.canMove = function(){
-    return !(this.h || this.k || this.sup || this.g || this.lightB || this.middleB);
-};
-
-Character.prototype.beClose = function(){
     return !(this.h || this.k || this.sup || this.g || this.lightB || this.middleB);
 };
 

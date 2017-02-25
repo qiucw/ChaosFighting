@@ -40,7 +40,6 @@ Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
 }
 
-// no inheritance
 function Background(game, spritesheet) {
     this.x = 0;
     this.y = 0;
