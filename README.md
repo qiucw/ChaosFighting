@@ -1,6 +1,6 @@
 # ChaosFighting
-Yunhang Jiang, Chenwei Qiu Version 20170302
-    [Demo Address]: https://jskipper0302.github.io/ChaosFighting/index.html
+ Chenwei Qiu, Yunhang Jiang
+    [Demo Address]: https://qiucw.github.io/ChaosFighting/
                 
     2D fighting game, purpose is beat your target
         2 game modes
