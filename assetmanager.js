@@ -1,7 +1,3 @@
-/*
- This code was copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
- */
-
 function AssetManager() {
     this.successCount = 0;
     this.errorCount = 0;
@@ -16,7 +12,7 @@ AssetManager.prototype.queueDownload = function (path) {
 
 AssetManager.prototype.isDone = function () {
     return this.downloadQueue.length === this.successCount + this.errorCount;
-};
+}
 
 AssetManager.prototype.downloadAll = function (callback) {
     for (var i = 0; i < this.downloadQueue.length; i++) {

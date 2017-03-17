@@ -40,12 +40,20 @@ Animation.prototype.isDone = function () {
     return (this.elapsedTime >= this.totalTime);
 }
 
-function Background(game, spritesheet) {
+// no inheritance
+function Background(game) {
     this.x = 0;
     this.y = 0;
-    this.spritesheet = spritesheet;
     this.game = game;
     this.ctx = game.ctx;
+    var a = Math.random();
+    if (a < 0.33){
+        this.spritesheet = AM.getAsset("./assets/bg1.jpg");
+    } else if (a < 0.66){
+        this.spritesheet = AM.getAsset("./assets/bg2.jpg");
+    } else {
+        this.spritesheet = AM.getAsset("./assets/bg3.jpg");
+    }
 };
 
 Background.prototype.draw = function () {
@@ -73,15 +81,38 @@ Bar.prototype.draw = function () {
 };
 
 Bar.prototype.update = function () {
-        //test health Point
-        if (this.game.num9){
-            playerOne.healthPoint--;
-            playerTwo.healthPoint--;
-        } else if (this.game.num8){
-            playerOne.healthPoint++;
-            playerTwo.healthPoint++;
-        }
+    // test health Point
+    // if (this.game.num9){
+    //     playerOne.healthPoint--;
+    //     playerTwo.healthPoint--;
+    // } else if (this.game.num8){
+    //     playerOne.healthPoint++;
+    //     playerTwo.healthPoint++;
+    // }
 };
+
+function StartButton(game, spritesheet) {
+    this.x = 1280/2 - 452/2;
+    this.y = 720/2 - 200/2;
+    this.spritesheet = spritesheet;
+    this.game = game;
+    this.ctx = game.ctx;
+};
+
+StartButton.prototype.draw = function () {
+    this.ctx.drawImage(this.spritesheet, this.x, this.y);
+};
+
+StartButton.prototype.update = function () {
+    if (localStorage.getItem("game") == 0){
+        this.x = 1280/2 - 452/2;
+        this.y = 720/2 - 200/2;
+    }else {
+        this.x = 1280;
+        this.y = 720;
+    }
+};
+
 AM.queueDownload("./godzilla/right/jumpUp.png");
 AM.queueDownload("./godzilla/right/heavyBoxing.png");
 AM.queueDownload("./godzilla/right/lightBoxing.png");
@@ -118,6 +149,8 @@ AM.queueDownload("./goku/right/hit.png");
 AM.queueDownload("./goku/right/ki.png");
 AM.queueDownload("./goku/right/super.png");
 AM.queueDownload("./goku/right/superFlash.png");
+AM.queueDownload("./goku/right/superFlash1.png");
+AM.queueDownload("./goku/right/superFlash2.png");
 AM.queueDownload("./goku/superSound.mp3");
 
 AM.queueDownload("./goku/left/jumpUp.png");
@@ -131,6 +164,8 @@ AM.queueDownload("./goku/left/hit.png");
 AM.queueDownload("./goku/left/ki.png");
 AM.queueDownload("./goku/left/super.png");
 AM.queueDownload("./goku/left/superFlash.png");
+AM.queueDownload("./goku/left/superFlash1.png");
+AM.queueDownload("./goku/left/superFlash2.png");
 
 AM.queueDownload("./itachi/left/jumpUp.png");
 AM.queueDownload("./itachi/left/heavyBoxing.png");
@@ -142,6 +177,8 @@ AM.queueDownload("./itachi/left/hit.png");
 AM.queueDownload("./itachi/left/ki.png");
 AM.queueDownload("./itachi/left/super.png");
 AM.queueDownload("./itachi/left/superFlash.png");
+AM.queueDownload("./itachi/left/superFlash1.png");
+AM.queueDownload("./itachi/left/superFlash2.png");
 AM.queueDownload("./itachi/superSound.mp3");
 
 AM.queueDownload("./itachi/right/jumpUp.png");
@@ -154,11 +191,152 @@ AM.queueDownload("./itachi/right/hit.png");
 AM.queueDownload("./itachi/right/ki.png");
 AM.queueDownload("./itachi/right/super.png");
 AM.queueDownload("./itachi/right/superFlash.png");
+AM.queueDownload("./itachi/right/superFlash1.png");
+AM.queueDownload("./itachi/right/superFlash2.png");
 
-AM.queueDownload("./img/StageChina.jpg");
-AM.queueDownload("./img/bar.gif");
-AM.queueDownload("./img/point.png");
-AM.queueDownload("./img/hit.mp3");
+AM.queueDownload("./pain/right/jumpUp.png");
+AM.queueDownload("./pain/right/heavyBoxing.png");
+AM.queueDownload("./pain/right/lightBoxing.png");
+AM.queueDownload("./pain/right/goBack.png");
+AM.queueDownload("./pain/right/goForward.png");
+AM.queueDownload("./pain/right/wait.png");
+AM.queueDownload("./pain/right/guard.png");
+AM.queueDownload("./pain/right/hit.png");
+AM.queueDownload("./pain/right/ki.png");
+AM.queueDownload("./pain/right/super.png");
+AM.queueDownload("./pain/right/superFlash.png");
+
+AM.queueDownload("./pain/left/jumpUp.png");
+AM.queueDownload("./pain/left/heavyBoxing.png");
+AM.queueDownload("./pain/left/lightBoxing.png");
+AM.queueDownload("./pain/left/goBack.png");
+AM.queueDownload("./pain/left/goForward.png");
+AM.queueDownload("./pain/left/wait.png");
+AM.queueDownload("./pain/left/guard.png");
+AM.queueDownload("./pain/left/hit.png");
+AM.queueDownload("./pain/left/ki.png");
+AM.queueDownload("./pain/left/super.png");
+AM.queueDownload("./pain/left/superFlash.png");
+AM.queueDownload("./pain/superSound.mp3");
+
+AM.queueDownload("./piccolo/right/jumpUp.png");
+AM.queueDownload("./piccolo/right/heavyBoxing.png");
+AM.queueDownload("./piccolo/right/lightBoxing.png");
+AM.queueDownload("./piccolo/right/goBack.png");
+AM.queueDownload("./piccolo/right/goForward.png");
+AM.queueDownload("./piccolo/right/wait.png");
+AM.queueDownload("./piccolo/right/guard.png");
+AM.queueDownload("./piccolo/right/hit.png");
+AM.queueDownload("./piccolo/right/ki.png");
+AM.queueDownload("./piccolo/right/super.png");
+AM.queueDownload("./piccolo/right/superFlash.png");
+AM.queueDownload("./piccolo/superSound.mp3");
+
+AM.queueDownload("./piccolo/left/jumpUp.png");
+AM.queueDownload("./piccolo/left/heavyBoxing.png");
+AM.queueDownload("./piccolo/left/lightBoxing.png");
+AM.queueDownload("./piccolo/left/goBack.png");
+AM.queueDownload("./piccolo/left/goForward.png");
+AM.queueDownload("./piccolo/left/wait.png");
+AM.queueDownload("./piccolo/left/guard.png");
+AM.queueDownload("./piccolo/left/hit.png");
+AM.queueDownload("./piccolo/left/ki.png");
+AM.queueDownload("./piccolo/left/super.png");
+AM.queueDownload("./piccolo/left/superFlash.png");
+
+AM.queueDownload("./ultraman/right/jumpUp.png");
+AM.queueDownload("./ultraman/right/heavyBoxing.png");
+AM.queueDownload("./ultraman/right/lightBoxing.png");
+AM.queueDownload("./ultraman/right/goBack.png");
+AM.queueDownload("./ultraman/right/goForward.png");
+AM.queueDownload("./ultraman/right/wait.png");
+AM.queueDownload("./ultraman/right/guard.png");
+AM.queueDownload("./ultraman/right/hit.png");
+AM.queueDownload("./ultraman/right/ki.png");
+AM.queueDownload("./ultraman/right/super.png");
+AM.queueDownload("./ultraman/right/superFlash.png");
+AM.queueDownload("./ultraman/superSound.mp3");
+
+AM.queueDownload("./ultraman/left/jumpUp.png");
+AM.queueDownload("./ultraman/left/heavyBoxing.png");
+AM.queueDownload("./ultraman/left/lightBoxing.png");
+AM.queueDownload("./ultraman/left/goBack.png");
+AM.queueDownload("./ultraman/left/goForward.png");
+AM.queueDownload("./ultraman/left/wait.png");
+AM.queueDownload("./ultraman/left/guard.png");
+AM.queueDownload("./ultraman/left/hit.png");
+AM.queueDownload("./ultraman/left/ki.png");
+AM.queueDownload("./ultraman/left/super.png");
+AM.queueDownload("./ultraman/left/superFlash.png");
+
+AM.queueDownload("./nagato/right/jumpUp.png");
+AM.queueDownload("./nagato/right/heavyBoxing.png");
+AM.queueDownload("./nagato/right/lightBoxing.png");
+AM.queueDownload("./nagato/right/goBack.png");
+AM.queueDownload("./nagato/right/goForward.png");
+AM.queueDownload("./nagato/right/wait.png");
+AM.queueDownload("./nagato/right/guard.png");
+AM.queueDownload("./nagato/right/hit.png");
+AM.queueDownload("./nagato/right/ki.png");
+AM.queueDownload("./nagato/right/super.png");
+AM.queueDownload("./nagato/right/superFlash.png");
+AM.queueDownload("./nagato/right/superFlash1.png");
+AM.queueDownload("./nagato/right/superFlash2.png");
+AM.queueDownload("./nagato/superSound.mp3");
+
+AM.queueDownload("./nagato/left/jumpUp.png");
+AM.queueDownload("./nagato/left/heavyBoxing.png");
+AM.queueDownload("./nagato/left/lightBoxing.png");
+AM.queueDownload("./nagato/left/goBack.png");
+AM.queueDownload("./nagato/left/goForward.png");
+AM.queueDownload("./nagato/left/wait.png");
+AM.queueDownload("./nagato/left/guard.png");
+AM.queueDownload("./nagato/left/hit.png");
+AM.queueDownload("./nagato/left/ki.png");
+AM.queueDownload("./nagato/left/super.png");
+AM.queueDownload("./nagato/left/superFlash.png");
+AM.queueDownload("./nagato/left/superFlash1.png");
+AM.queueDownload("./nagato/left/superFlash2.png");
+
+AM.queueDownload("./danzo/right/jumpUp.png");
+AM.queueDownload("./danzo/right/heavyBoxing.png");
+AM.queueDownload("./danzo/right/lightBoxing.png");
+AM.queueDownload("./danzo/right/goBack.png");
+AM.queueDownload("./danzo/right/goForward.png");
+AM.queueDownload("./danzo/right/wait.png");
+AM.queueDownload("./danzo/right/guard.png");
+AM.queueDownload("./danzo/right/hit.png");
+AM.queueDownload("./danzo/right/ki.png");
+AM.queueDownload("./danzo/right/super.png");
+AM.queueDownload("./danzo/right/superFlash.png");
+
+AM.queueDownload("./danzo/left/jumpUp.png");
+AM.queueDownload("./danzo/left/heavyBoxing.png");
+AM.queueDownload("./danzo/left/lightBoxing.png");
+AM.queueDownload("./danzo/left/goBack.png");
+AM.queueDownload("./danzo/left/goForward.png");
+AM.queueDownload("./danzo/left/wait.png");
+AM.queueDownload("./danzo/left/guard.png");
+AM.queueDownload("./danzo/left/hit.png");
+AM.queueDownload("./danzo/left/ki.png");
+AM.queueDownload("./danzo/left/super.png");
+AM.queueDownload("./danzo/left/superFlash.png");
+
+AM.queueDownload("./assets/bg1.jpg");
+AM.queueDownload("./assets/bg2.jpg");
+AM.queueDownload("./assets/bg3.jpg");
+AM.queueDownload("./assets/bar.gif");
+AM.queueDownload("./assets/point.png");
+AM.queueDownload("./assets/start.png");
+AM.queueDownload("./assets/hit.mp3");
+AM.queueDownload("./assets/bgm1.mp3");
+AM.queueDownload("./assets/bgm2.mp3");
+AM.queueDownload("./assets/bgm3.mp3");
+AM.queueDownload("./assets/bgm4.mp3");
+AM.queueDownload("./assets/bgm5.mp3");
+AM.queueDownload("./assets/bgm6.mp3");
+AM.queueDownload("./assets/bgm7.mp3");
+AM.queueDownload("./assets/bgm8.mp3");
 
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
@@ -167,7 +345,7 @@ AM.downloadAll(function () {
     gameEngine.init(ctx);
     gameEngine.start();
 
-    gameEngine.addEntity(new Background(gameEngine, AM.getAsset("./img/StageChina.jpg")));
+    gameEngine.addEntity(new Background(gameEngine));
     playerOne = new Character(gameEngine, AM, 1, localStorage.getItem("selection1"));
     playerTwo = new Character(gameEngine, AM, 2, localStorage.getItem("selection2"));
     playerOne.setOpponent(playerTwo);
@@ -177,7 +355,8 @@ AM.downloadAll(function () {
     }
     gameEngine.addEntity(playerOne);
     gameEngine.addEntity(playerTwo);
-    gameEngine.addEntity(new Bar(gameEngine, AM.getAsset("./img/bar.gif")));
+    gameEngine.addEntity(new Bar(gameEngine, AM.getAsset("./assets/bar.gif")));
+    gameEngine.addEntity(new StartButton(gameEngine, AM.getAsset("./assets/start.png")));
 
     console.log("All Done!");
 });

@@ -1,13 +1,3 @@
-/*
- This code was copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
-*/
-window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-}, false);
-
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -61,7 +51,7 @@ GameEngine.prototype.startInput = function () {
         if (e.code === "KeyA") that.a = true;
         if (e.code === "KeyS") that.s = true;
         if (e.code === "KeyL") that.l = true;
-        if (this.ai != true){
+        if (that.ai != true){
             if (e.code === "ArrowUp") that.up = true;
             if (e.code === "ArrowLeft") that.left = true;
             if (e.code === "ArrowRight") that.right = true;
@@ -85,7 +75,7 @@ GameEngine.prototype.startInput = function () {
         if (e.code === "KeyA") that.a = false;
         if (e.code === "KeyS") that.s = false;
         if (e.code === "KeyL") that.l = false;
-        if (this.ai != true){
+        if (that.ai != true){
             if (e.code === "ArrowUp") that.up = false;
             if (e.code === "ArrowLeft") that.left = false;
             if (e.code === "ArrowRight") that.right = false;
@@ -102,7 +92,12 @@ GameEngine.prototype.startInput = function () {
     console.log('Input started');
 }
 
-
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 GameEngine.prototype.start = function () {
     console.log("starting game");
